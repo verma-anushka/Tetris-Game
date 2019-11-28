@@ -4,12 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Bike Game</title>
+    <link rel="stylesheet" href="style.css">
+
+    <title>Tetris Game</title>
 
 </head>
 <body>
+
+    <div>
+        <button class="play">Play</button>
+        <button class="pause">Pause</button>
+        <button class="restart">Restart</button>
+    </div>
+
+    <div>
+        Score : <div id="score">0</div>
+    </div>
     
-    <script src="main.js"></script>
+    <canvas id="tetris" width="300" height="600"></canvas>
+
+    <script src="./js/init.js"></script>
+    <script src="./js/main.js"></script>
 
 </body>
 </html>
