@@ -1,4 +1,4 @@
-
+/* --------------------------------- STYLES ---------------------------------  */
 body{
     margin: 0;
     padding: 0;
@@ -7,7 +7,6 @@ body{
 .hide{
     display: none;
 }
-
 .btns{
     position: fixed;
     top: 1.2%;
@@ -75,7 +74,6 @@ body{
 .btns .btn.level-container #level{
   color: #47175d;
 }
-
 .btns .btn:focus:before,
 .btns .btn:hover:before {
   top: -10%;

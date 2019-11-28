@@ -1,3 +1,5 @@
+// ------------- GAME LOGIC ------------- //
+
 // Tetromino Class
 class Tetromino{
 
@@ -13,7 +15,6 @@ class Tetromino{
 
     }
     
-
     // Methods to draw tetromino on the game board
 
     fill(color){
@@ -77,27 +78,23 @@ class Tetromino{
 
     rotate(){ // rotation
 
-        let nextPattern = this.tetromino[ (this.idx + 1) % this.tetromino.length ]; // nect pattern of the current tertromino
-        let kick = 0;
+        let nextPattern = this.tetromino[ (this.idx + 1) % this.tetromino.length ]; // neXt pattern of the current tertromino
+        let kick = 0; // to check game board 
         
-        if(this.collision(0, 0, nextPattern)){
-
-            // Obstructions
-            if(this.x > totalCols/2){
-                // it's the right wall
-                kick = -1; // we need to move the piece to the left
+        if( this.collision(0, 0, nextPattern) ){ // in case of collision due to game board end
+            if(this.x > totalCols/2){ // check board end
+                kick = -1; // move tetromino to the left
             }else{
-                // it's the left wall
-                kick = 1; // we need to move the piece to the right
+                kick = 1; // move tetromino to the right
             }
         }
         
-        if(!this.collision(kick,0,nextPattern)){
-            this.unDraw();
-            this.x += kick;
+        if( !this.collision(kick, 0, nextPattern) ){ // in case of no collision
+            this.unDraw(); // remove the current tetromino
+            this.x += kick; // set new position
             this.idx = (this.idx + 1) % this.tetromino.length; // update active tetromino idx
             this.activeTetromino = this.tetromino[this.idx]; // update active tetromino pattern
-            this.draw();
+            this.draw(); // draw the tetromino at new position
         }
     }
 
@@ -111,10 +108,9 @@ class Tetromino{
                 if( !tetromino[r][c] ){ // empty cell -> no collision possible -> no checks required
                     continue;
                 }
-
-                // new postition of the tetromino
-                let newX = this.x + c + x;
-                let newY = this.y + r + y;
+                
+                let newX = this.x + c + x; // new postition of the tetromino
+                let newY = this.y + r + y; // new postition of the tetromino
                 if(newX < 0 || newX >= totalCols || newY >= totalRows){ // check for collision in the horizontal direction
                     return true;
                 }
@@ -174,8 +170,9 @@ class Tetromino{
             }
         }
         drawBoard();   
-        scoreElement.innerHTML = score;
-        levelElement.innerHTML = level;
+
+        scoreElement.innerHTML = score; // update score on screen
+        levelElement.innerHTML = level; // update level on screen
     }
 }
 
@@ -230,8 +227,6 @@ document.addEventListener("keydown",function(e){
     }
 });
 
-    drawBoard();
-
 // Start Game
 document.getElementById("start").addEventListener("click", function(){
     startGame(); 
@@ -241,3 +236,6 @@ document.getElementById("start").addEventListener("click", function(){
 document.getElementById("restart").addEventListener("click", function(){
     location.reload(); 
 });
+
+drawBoard();
+
