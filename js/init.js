@@ -2,13 +2,17 @@
 const cvs = document.getElementById("canvas");
 const ctx = cvs.getContext("2d");
 const scoreElement = document.getElementById("score");
-// const startGameElement = document.getElementById("start");
 
 // Game variables
 const totalRows = 20; // total number of rows
 const totalCols = 10; // total number of columns
 const cellSize = 30; // size of a single cell
 const emptyCellColor = "#000"; // color of an empty cell
+let score = 0; // score
+let speed = 1000;
+let level = 0;
+let gameOver = false; // check for game over
+let dropStart = Date.now(); // timer for tetromino
 
 // Initialize the game board
 let board = [];
