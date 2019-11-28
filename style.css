@@ -1,19 +1,103 @@
-html{
+
+body{
     margin: 0;
     padding: 0;
+    background: linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.25)), url(images/bg.png) no-repeat center center fixed;
 }
-body{
-    background: url(images/bg.png);
+.hide{
+    display: none;
 }
-div{
-    text-align: center;
+
+.btns{
+    position: fixed;
+    top: 1.2%;
+    left: 39%;
+    width: 300px;
 }
-#score{
-    color: #FFF;
+.btns .btn {
     display: inline-block;
+    background-color: #fff;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    box-shadow: 0 5px 15px -5px rgba(0,0,0,0.1);
+    opacity: 0.99;
+}
+.btns .btn.score-container,
+.btns .btn.level-container{
+    left: 42%;
+}
+.btns .btn:before {
+    content: '';
+    width: 120%;
+    height: 120%;
+    position: absolute;
+    transform: rotate(45deg);
+}
+.btns .btn .fa{
+    font-size: 20px;
+    vertical-align: middle;
+    margin-left: 4px;
+}
+.btns .btn #score,
+.btns .btn #level{
+    width: 20px;
+    height: 20px;
+    font-size: 16px;
+    vertical-align: middle;
+    /* margin-left: 2px; */
+}
+.btns .btn,
+.btns .btn:before,
+.btns .btn .fa {
+  transition: all 0.35s;
+  transition-timing-function: cubic-bezier(0.31, -0.105, 0.43, 1.59);
+}
+.btns .btn:before {
+  top: 90%;
+  left: -110%;
+}
+.btns .btn .fa {
+  transform: scale(0.8);
+}
+.btns .btn.play-button:before,
+.btns .btn.restart-button:before,
+.btns .btn.score-container:before,
+.btns .btn.level-container:before{
+    background-color: #47175d;
+}
+.btns .btn.play-button .fa,
+.btns .btn.restart-button .fa,
+.btns .btn.score-container #score,
+.btns .btn.level-container #level{
+  color: #47175d;
+}
+
+.btns .btn:focus:before,
+.btns .btn:hover:before {
+  top: -10%;
+  left: -10%;
+}
+.btns .btn:focus .fa,
+.btns .btn:hover .fa{
+  color: #fff;
 }
 canvas{
     opacity: 0.8;
     display: block;
-    margin:0 auto;
+    margin: 0px auto;
+    margin-top: 50px;
+}
+#gameOver{
+	position: absolute;
+	top: 41%;
+    left: 30%;
+    color: #FFF;
+    text-transform: uppercase;
+    font-size: 80px;
+    margin: 0 auto;
+    opacity: 1;
 }

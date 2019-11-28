@@ -140,8 +140,10 @@ class Tetromino{
                 }
                 
                 if(this.y + r < 0){ // check for game over
-                    alert("Game Over");
+                    // alert("Game Over");
                     gameOver = true; // stop request animation frame
+                    document.getElementsByTagName("body")[0].style.opacity = "0.8";
+                    document.getElementById("gameOver").classList.remove("hide");
                     break;
                 }
                 
@@ -164,6 +166,8 @@ class Tetromino{
                 for( c = 0; c < totalCols; c++){ // create the top row of the game board
                     board[0][c] = emptyCellColor;
                 }
+
+                // Update variables
                 score += 10;
                 level++;
                 speed *= 0.9;
@@ -171,6 +175,7 @@ class Tetromino{
         }
         drawBoard();   
         scoreElement.innerHTML = score;
+        levelElement.innerHTML = level;
     }
 }
 
@@ -188,23 +193,22 @@ function randomTetromino(){
 let tetrominoObj = randomTetromino();
 
 
-// Function to drop tetromino after every 1 sec
+// Function to drop tetromino
 function drop(){ 
     let now = Date.now();
     let delta = now - dropStart;
-    console.log(speed);
+
     if(delta > speed){
-        tetrominoObj.moveDown();
-        dropStart = Date.now();
+        tetrominoObj.moveDown(); // drop tetromino
+        dropStart = Date.now(); // update dropstart
     }
-    if( !gameOver ){
+    if( !gameOver ){ // stop tetromino drop
         requestAnimationFrame(drop);
     }
 }
 
 // Function to start game
 function startGame(){
-    drawBoard();
     tetrominoObj.draw();
     drop();
 }
@@ -226,8 +230,14 @@ document.addEventListener("keydown",function(e){
     }
 });
 
+    drawBoard();
+
 // Start Game
 document.getElementById("start").addEventListener("click", function(){
-    startGame();
-    
+    startGame(); 
+});
+
+// Restart Game
+document.getElementById("restart").addEventListener("click", function(){
+    location.reload(); 
 });
