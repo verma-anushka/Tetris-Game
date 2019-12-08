@@ -1,4 +1,4 @@
-// ------------- GAME LOGIC ------------- //
+// --------------------------------------------- GAME LOGIC --------------------------------------------- //
 
 // Tetromino Class
 class Tetromino{
@@ -6,12 +6,12 @@ class Tetromino{
     // Tetromino Class Constructor
     constructor(tetromino, color){
 
-        this.tetromino = tetromino; // tetromino piece
-        this.color = color; // tetromino color
-        this.idx = 0; // tetromino pattern (initial selected pattern)
-        this.activeTetromino = this.tetromino[this.idx]; // active tetromino pattern (on screen)
-        this.x = 3; // initial position of the tetromino (above the game board)
-        this.y = -2; // initial position of the tetromino (above the game board)
+        this.tetromino       = tetromino;                            // tetromino piece
+        this.color           = color;                                // tetromino color
+        this.idx             = 0;                                    // tetromino pattern (initial selected pattern)
+        this.activeTetromino = this.tetromino[this.idx];             // active tetromino pattern (on screen)
+        this.x               = 3;                                    // initial position of the tetromino (above the game board)
+        this.y               = -2;                                   // initial position of the tetromino (above the game board)
 
     }
     
@@ -136,7 +136,6 @@ class Tetromino{
                 }
                 
                 if(this.y + r < 0){ // check for game over
-                    // alert("Game Over");
                     gameOver = true; // stop request animation frame
                     document.getElementsByTagName("body")[0].style.opacity = "0.8";
                     document.getElementById("gameOver").classList.remove("hide");
@@ -154,11 +153,13 @@ class Tetromino{
                 isRowFull = isRowFull && (board[r][c] != emptyCellColor);
             }
             if(isRowFull){
-                for(var y = r; y > 1; y--){ // remove the complete row
+                this.unDraw();
+                for(var y = r; y > 0; y--){ // remove the complete row
                     for(var c = 0; c < totalCols; c++){
                         board[y][c] = board[y-1][c];
                     }
                 }
+                this.draw();
                 for( c = 0; c < totalCols; c++){ // create the top row of the game board
                     board[0][c] = emptyCellColor;
                 }
